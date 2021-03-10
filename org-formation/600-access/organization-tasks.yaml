@@ -11,6 +11,52 @@ NlpSandboxServiceAccount:
       - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
       - arn:aws:iam::aws:policy/AmazonS3FullAccess
       - arn:aws:iam::aws:policy/AdministratorAccess
+
+    # policy from https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html
+    PolicyDocument: >-
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "AllowIamUserAssumeRole",
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Principal": {"AWS": "arn:aws:iam::123456789012:user/test-session-tags"},
+            "Condition": {
+              "StringLike": {
+                  "aws:RequestTag/Project": "*",
+                  "aws:RequestTag/CostCenter": "*",
+                  "aws:RequestTag/Department": "*"
+              },
+              "StringEquals": {"sts:ExternalId": "Example987"}
+            }
+          },
+          {
+            "Sid": "AllowPassSessionTagsAndTransitive",
+            "Effect": "Allow",
+            "Action": "sts:TagSession",
+            "Principal": {"AWS": "arn:aws:iam::123456789012:user/test-session-tags"},
+            "Condition": {
+              "StringLike": {
+                "aws:RequestTag/Project": "*",
+                "aws:RequestTag/CostCenter": "*"
+              },
+              "StringEquals": {
+                "aws:RequestTag/Department": [
+                  "Engineering",
+                  "Marketing"
+                ]
+              },
+              "ForAllValues:StringEquals": {
+                "sts:TransitiveTagKeys": [
+                  "Project",
+                  "Department"
+                ]
+              }
+            }
+          }
+        ]
+      }
   DefaultOrganizationBinding:
     IncludeMasterAccount: false
     Account: !Ref SandboxAccount
