@@ -1,0 +1,8 @@
+template:
+  path: kdpublicbucket1000/python/simplebucket.py
+  type: s3
+stack_name: kds3testpy
+#parameters:
+#  Project: kdproject
+#  Department: kddepart
+#  OwnerEmail: kd@sagebase.org

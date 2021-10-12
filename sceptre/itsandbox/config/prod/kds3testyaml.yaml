@@ -1,0 +1,4 @@
+template:
+  path: /tmp/noop.yaml
+  type: file
+stack_name: kds3testyaml

@@ -1,0 +1,8 @@
+template:
+  path: kdpublicbucket1000/jinja/s3-bucket-v2.j2
+  type: s3
+stack_name: kds3testj2
+parameters:
+  Project: kdproject
+  Department: kddepart
+  OwnerEmail: kd@sagebase.org

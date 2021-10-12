@@ -1,0 +1,10 @@
+#template_path: s3-bucket-v2.j2
+
+template:
+  path: templates/s3-bucket-v2.j2
+  type: file
+stack_name: kds3testfilej2
+parameters:
+  Project: kdproject
+  Department: kddepart
+  OwnerEmail: kd@sagebase.org
