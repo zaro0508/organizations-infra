@@ -1,0 +1,8 @@
+#template_path: "noop.j2"
+template:
+  url: https://raw.githubusercontent.com/zaro0508/organizations-infra/mytest1/sceptre/itsandbox/templates/noop.yaml
+  type: http
+stack_name: "a"
+stack_tags:
+  team: lakers
+  sport: bball

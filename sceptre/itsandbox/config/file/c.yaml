@@ -1,0 +1,9 @@
+#template_path: "noop.j2"
+template:
+  path: templates/noop.py
+stack_name: "c"
+stack_tags:
+  team: lakers
+  sport: bball
+sceptre_user_data:
+  MyName: "calvin"

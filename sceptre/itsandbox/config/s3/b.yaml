@@ -1,0 +1,9 @@
+#template_path: "noop.j2"
+template:
+  path: kdpublicbucket1000/jinja/noop.j2
+  type: s3
+stack_name: "b"
+dependencies:
+  - s3/a.yaml
+sceptre_user_data:
+  MyName: "ben"
